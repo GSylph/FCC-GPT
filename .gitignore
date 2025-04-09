@@ -1,5 +1,5 @@
 cuda/
 .ipynb_checkpoints/
-openwebtext/
+.openwebtext/
 output0.txt
 vocab.txt

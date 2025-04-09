@@ -17,7 +17,6 @@ folder_path = "C:/Users/hp/Desktop/Code/Projects/fcc-gpt/openwebtext"
 output_file_train="output_train.txt"
 output_file_val="output_val.txt"
 vocab_file="vocab.txt"
-split_files = int(input("How many files do you want to split into?"))
 
 files = xz_files_in_dir(folder_path)
 total_files = len(files)
@@ -41,4 +40,20 @@ with open(output_file_train, 'w', encoding='utf-8') as outfile:
                 outfile.write(line)
                 characters = set(text)
                 vocab.update(characters)
+
+#Process the validation files
+with open(output_file_val, 'w', encoding='utf-8') as outfile:
+    for filename in tqdm(files_val, total=len(files_val)):
+        file_path = os.path.join(folder_path, filename)
+        with lzma.open(file_path, 'rt', encoding='utf-8') as infile:
+            for line in infile:
+                text=infile.read()
+                outfile.write(line)
+                characters = set(text)
+                vocab.update(characters)
+
+#Write the vocabulary to vocab.txt
+with open(vocab_file, 'w', encoding='utf-8') as vfile:
+    for char in sorted(vocab):
+        vfile.write(char + '\n')
 
