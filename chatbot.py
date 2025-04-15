@@ -8,9 +8,9 @@ import argparse
 
 parser = argparse.ArgumentParser(description='this is a demo prgoram')
 
+parser.add_argument('-batch_size', type=str,required=True, help='Please provide a batch size')
 args= parser.parse_args()
 #here we add the arguments we want to pass to the script
-parser.add_argument('-batch_size', type=str,required=True, help='Please provide a batch size')
 
 print(f'batch size is {args.batch_size}')
  
